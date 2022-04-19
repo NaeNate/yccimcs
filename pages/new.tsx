@@ -1,9 +1,9 @@
 import crypto from "crypto";
-import { NextPage } from "next";
-import { FormEvent, useState } from "react";
 import { collection, doc, setDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { FormEvent, useState } from "react";
+import { db } from "../firebase";
 
 const Index: NextPage = () => {
   const [trait, setTrait] = useState("");
@@ -14,9 +14,11 @@ const Index: NextPage = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const hash = crypto.createHash("sha256").update(password).digest("base64");
-
-    if (hash !== "VQmEDQhzrbBAVYiCEZeoY0UBKTSGxgHKUeFAY6viXQY=") return;
+    if (
+      crypto.createHash("sha256").update(password).digest("base64") !==
+      "VQmEDQhzrbBAVYiCEZeoY0UBKTSGxgHKUeFAY6viXQY="
+    )
+      return;
 
     await setDoc(doc(collection(db, "traits")), {
       trait,

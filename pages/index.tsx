@@ -22,10 +22,10 @@ const Index: NextPage = () => {
 
   return (
     <div>
-      <h1>You can't come into my coffee shop if...</h1>
+      <h1>You can&#39;t come into my coffee shop if...</h1>
       <div>
-        {traits.map((trait) => {
-          return <p>{trait}</p>;
+        {traits.map((trait, i) => {
+          return <p key={i}>{trait}</p>;
         })}
       </div>
     </div>
